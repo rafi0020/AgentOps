@@ -29,9 +29,9 @@ Observability, evaluation and release control for LLM applications, with an agen
 
 ## Architecture
 
-![AgentOps architecture](docs/architecture.png)
+![AgentOps architecture](docs/architecture.gif)
 
-[Interactive diagram](docs/architecture.html) (open the file in a browser) · [Architecture notes](docs/ARCHITECTURE.md) · [Database schema](docs/DATABASE.md) · [API reference](docs/API.md)
+[Interactive diagram](https://rafi0020.github.io/AgentOps/docs/architecture.html) · [Architecture notes](docs/ARCHITECTURE.md) · [Database schema](docs/DATABASE.md) · [API reference](docs/API.md)
 
 | Layer | Technology |
 |---|---|
@@ -329,7 +329,7 @@ issue.
 
 | Document | Contents |
 |---|---|
-| [docs/architecture.html](docs/architecture.html) | Interactive architecture diagram (open the file in a browser) |
+| [docs/architecture.html](https://rafi0020.github.io/AgentOps/docs/architecture.html) | Interactive architecture diagram |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Processes, request paths for ingestion and investigations, components and design decisions |
 | [docs/API.md](docs/API.md) | Every REST endpoint, with authentication and scopes |
 | [docs/DATABASE.md](docs/DATABASE.md) | Tables, partitions, roll-ups, roles and row-level security |

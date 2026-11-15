@@ -1,6 +1,6 @@
 # Architecture
 
-[Interactive diagram](architecture.html) (open the file in a browser)
+[Interactive diagram](https://rafi0020.github.io/AgentOps/docs/architecture.html)
 
 ## Overview
 
