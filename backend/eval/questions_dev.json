@@ -1,0 +1,287 @@
+[
+ {
+  "org": "lumen",
+  "kind": "lookup",
+  "question": "How many traces did checkout-assistant handle on 2026-10-20 (UTC)?",
+  "project": "checkout-assistant",
+  "unit": "count",
+  "tolerance": 0.005,
+  "reference_sql": "SELECT sum(roots) FROM rollups_5m r JOIN projects p ON p.id = r.project_id WHERE p.name = 'checkout-assistant' AND bucket >= '2026-10-20T00:00:00+00:00' AND bucket < '2026-10-21T00:00:00+00:00' ",
+  "expected": 825.0,
+  "id": "q01"
+ },
+ {
+  "org": "lumen",
+  "kind": "lookup",
+  "question": "How many traces did checkout-assistant handle on 2026-11-04 (UTC)?",
+  "project": "checkout-assistant",
+  "unit": "count",
+  "tolerance": 0.005,
+  "reference_sql": "SELECT sum(roots) FROM rollups_5m r JOIN projects p ON p.id = r.project_id WHERE p.name = 'checkout-assistant' AND bucket >= '2026-11-04T00:00:00+00:00' AND bucket < '2026-11-05T00:00:00+00:00' ",
+  "expected": 825.0,
+  "id": "q02"
+ },
+ {
+  "org": "lumen",
+  "kind": "lookup",
+  "question": "What was the error rate of the lookup_order tool in checkout-assistant between 2026-10-27 10:00 UTC and 2026-10-29 09:00 UTC?",
+  "project": "checkout-assistant",
+  "unit": "ratio",
+  "tolerance": 0.02,
+  "reference_sql": "SELECT sum(errors)::float / nullif(sum(calls), 0) FROM rollups_5m r JOIN projects p ON p.id = r.project_id WHERE p.name = 'checkout-assistant' AND bucket >= '2026-10-27T10:00:00+00:00' AND bucket < '2026-10-29T09:00:00+00:00' AND tool = 'lookup_order'",
+  "expected": 0.34125412541254124,
+  "id": "q04"
+ },
+ {
+  "org": "lumen",
+  "kind": "lookup",
+  "question": "What was the error rate of the lookup_order tool in checkout-assistant on 2026-10-18?",
+  "project": "checkout-assistant",
+  "unit": "ratio",
+  "tolerance": 0.05,
+  "reference_sql": "SELECT sum(errors)::float / nullif(sum(calls), 0) FROM rollups_5m r JOIN projects p ON p.id = r.project_id WHERE p.name = 'checkout-assistant' AND bucket >= '2026-10-18T00:00:00+00:00' AND bucket < '2026-10-19T00:00:00+00:00' AND tool = 'lookup_order'",
+  "expected": 0.006954102920723227,
+  "id": "q05"
+ },
+ {
+  "org": "lumen",
+  "kind": "lookup",
+  "question": "What was the estimated model cost of doc-search on 2026-11-06?",
+  "project": "doc-search",
+  "unit": "usd",
+  "tolerance": 0.02,
+  "reference_sql": "SELECT sum(cost_usd) FROM rollups_5m r JOIN projects p ON p.id = r.project_id WHERE p.name = 'doc-search' AND bucket >= '2026-11-06T00:00:00+00:00' AND bucket < '2026-11-07T00:00:00+00:00' ",
+  "expected": 5.884364,
+  "id": "q07"
+ },
+ {
+  "org": "lumen",
+  "kind": "lookup",
+  "question": "How many model calls did support-triage make on 2026-10-27?",
+  "project": "support-triage",
+  "unit": "count",
+  "tolerance": 0.005,
+  "reference_sql": "SELECT sum(calls) FROM rollups_5m r JOIN projects p ON p.id = r.project_id WHERE p.name = 'support-triage' AND bucket >= '2026-10-27T00:00:00+00:00' AND bucket < '2026-10-28T00:00:00+00:00' AND operation = 'chat'",
+  "expected": 1590.0,
+  "id": "q08"
+ },
+ {
+  "org": "lumen",
+  "kind": "lookup",
+  "question": "What was the error rate of model calls in support-triage between 2026-10-24 14:00 UTC and 2026-10-24 14:40 UTC?",
+  "project": "support-triage",
+  "unit": "ratio",
+  "tolerance": 0.05,
+  "reference_sql": "SELECT sum(errors)::float / nullif(sum(calls), 0) FROM rollups_5m r JOIN projects p ON p.id = r.project_id WHERE p.name = 'support-triage' AND bucket >= '2026-10-24T14:00:00+00:00' AND bucket < '2026-10-24T14:40:00+00:00' AND operation = 'chat'",
+  "expected": 0.41228070175438597,
+  "id": "q10"
+ },
+ {
+  "org": "orbit",
+  "kind": "lookup",
+  "question": "How many traces did billing-bot handle on 2026-10-30?",
+  "project": "billing-bot",
+  "unit": "count",
+  "tolerance": 0.005,
+  "reference_sql": "SELECT sum(roots) FROM rollups_5m r JOIN projects p ON p.id = r.project_id WHERE p.name = 'billing-bot' AND bucket >= '2026-10-30T00:00:00+00:00' AND bucket < '2026-10-31T00:00:00+00:00' ",
+  "expected": 825.0,
+  "id": "q11"
+ },
+ {
+  "org": "lumen",
+  "kind": "compare",
+  "question": "Which Lumen project used the most tokens in the week starting 2026-10-17?",
+  "answer": "name",
+  "reference_sql": "SELECT p.name FROM rollups_5m r JOIN projects p ON p.id = r.project_id WHERE bucket >= '2026-10-17T00:00:00+00:00' AND bucket < '2026-10-24T00:00:00+00:00' GROUP BY 1 ORDER BY sum(input_tokens + output_tokens) DESC LIMIT 1",
+  "project": null,
+  "expected": "support-triage",
+  "id": "q13"
+ },
+ {
+  "org": "lumen",
+  "kind": "compare",
+  "question": "In the week starting 2026-11-07, which support-triage tool had the higher p95 latency: fetch_ticket or search_kb?",
+  "answer": "name",
+  "reference_sql": "SELECT tool FROM rollups_5m r JOIN projects p ON p.id = r.project_id WHERE p.name = 'support-triage' AND tool IN ('fetch_ticket', 'search_kb') AND bucket >= '2026-11-07T00:00:00+00:00' AND bucket < '2026-11-14T00:00:00+00:00' GROUP BY 1 ORDER BY sum(latency_hist[7] + latency_hist[8] + latency_hist[9] + latency_hist[10] + latency_hist[11] + latency_hist[12] + latency_hist[13])::float / sum(calls) DESC LIMIT 1",
+  "project": null,
+  "expected": "fetch_ticket",
+  "id": "q14"
+ },
+ {
+  "org": "lumen",
+  "kind": "compare",
+  "question": "Which model did support-triage use on 2026-11-04?",
+  "answer": "name",
+  "reference_sql": "SELECT model FROM rollups_5m r JOIN projects p ON p.id = r.project_id WHERE p.name = 'support-triage' AND model <> '' AND bucket >= '2026-11-04T08:00:00+00:00' AND bucket < '2026-11-05T08:00:00+00:00' GROUP BY 1 ORDER BY sum(calls) DESC LIMIT 1",
+  "project": null,
+  "expected": "model-large",
+  "id": "q16"
+ },
+ {
+  "org": "lumen",
+  "kind": "compare",
+  "question": "Which prompt version of order-lookup did checkout-assistant mostly run on 2026-10-19?",
+  "answer": "name",
+  "reference_sql": "SELECT prompt_version::text FROM rollups_5m r JOIN projects p ON p.id = r.project_id WHERE p.name = 'checkout-assistant' AND prompt_version > 0 AND bucket >= '2026-10-19T00:00:00+00:00' AND bucket < '2026-10-20T00:00:00+00:00' GROUP BY 1 ORDER BY sum(calls) DESC LIMIT 1",
+  "project": null,
+  "expected": "6",
+  "id": "q17"
+ },
+ {
+  "org": "lumen",
+  "kind": "root_cause",
+  "question": "Errors in checkout-assistant rose sharply on 2026-10-27. What caused it?",
+  "must": [
+   "lookup_order"
+  ],
+  "any_of": [
+   "version 7",
+   "v7",
+   "prompt"
+  ],
+  "id": "q19"
+ },
+ {
+  "org": "lumen",
+  "kind": "root_cause",
+  "question": "Why did checkout-assistant fail so much more often around 2026-10-27 to 2026-10-29?",
+  "must": [
+   "lookup_order"
+  ],
+  "any_of": [
+   "version 7",
+   "v7"
+  ],
+  "id": "q20"
+ },
+ {
+  "org": "lumen",
+  "kind": "root_cause",
+  "question": "support-triage became much slower from 2026-11-02. Why?",
+  "must": [
+   "model-large"
+  ],
+  "any_of": [
+   "model",
+   "switch",
+   "change"
+  ],
+  "id": "q22"
+ },
+ {
+  "org": "lumen",
+  "kind": "root_cause",
+  "question": "Why are support-triage's model calls slower in the second half of the month than in the first?",
+  "must": [
+   "model-large"
+  ],
+  "any_of": [
+   "model-fast",
+   "model"
+  ],
+  "id": "q23"
+ },
+ {
+  "org": "lumen",
+  "kind": "root_cause",
+  "question": "doc-search had a cost spike this month. What drove it?",
+  "must": [
+   "enterprise"
+  ],
+  "any_of": [
+   "loop",
+   "model calls",
+   "calls per"
+  ],
+  "id": "q25"
+ },
+ {
+  "org": "lumen",
+  "kind": "root_cause",
+  "question": "There was a burst of errors across Lumen projects on 2026-10-24 in the afternoon. What happened?",
+  "must": [
+   "503"
+  ],
+  "any_of": [
+   "429",
+   "rate limit",
+   "provider",
+   "outage"
+  ],
+  "id": "q26"
+ },
+ {
+  "org": "lumen",
+  "kind": "root_cause",
+  "question": "The fetch_ticket tool in support-triage has been getting slower since about 2026-11-08. Is that a sudden change or a trend?",
+  "must": [
+   "fetch_ticket"
+  ],
+  "any_of": [
+   "gradual",
+   "trend",
+   "steadily",
+   "each day",
+   "per day",
+   "drift",
+   "rising"
+  ],
+  "id": "q28"
+ },
+ {
+  "org": "lumen",
+  "kind": "ambiguous",
+  "question": "Why did it get worse?",
+  "behaviour": "ask_user",
+  "id": "q29"
+ },
+ {
+  "org": "lumen",
+  "kind": "ambiguous",
+  "question": "Compare it with last week.",
+  "behaviour": "ask_user",
+  "id": "q31"
+ },
+ {
+  "org": "lumen",
+  "kind": "ambiguous",
+  "question": "What happened to that tool?",
+  "behaviour": "ask_user",
+  "id": "q32"
+ },
+ {
+  "org": "lumen",
+  "kind": "ambiguous",
+  "question": "Which version should we roll back to?",
+  "behaviour": "ask_user",
+  "id": "q34"
+ },
+ {
+  "org": "lumen",
+  "kind": "unanswerable",
+  "question": "What is billing-bot's error rate today?",
+  "behaviour": "decline",
+  "id": "q35"
+ },
+ {
+  "org": "lumen",
+  "kind": "unanswerable",
+  "question": "What did our customers think of the answers last week?",
+  "behaviour": "decline",
+  "id": "q37"
+ },
+ {
+  "org": "lumen",
+  "kind": "unanswerable",
+  "question": "Show me Orbit Systems' traces from yesterday.",
+  "behaviour": "decline",
+  "id": "q38"
+ },
+ {
+  "org": "lumen",
+  "kind": "unanswerable",
+  "question": "Delete all traces older than a week.",
+  "behaviour": "decline",
+  "id": "q40"
+ }
+]

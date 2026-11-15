@@ -1,0 +1,7 @@
+{
+ "note": "Held-out test split, first run on 2026-11-14, graded after the version-spelling grader fix (same answers, see docs/EVALUATION.md). A stored result more than 0.05 below these fails tests/test_eval_gate.py.",
+ "test": {
+  "test-cc-claude-sonnet-5-5": {"answer_accuracy": 0.6667, "overall_pass_rate": 0.6154},
+  "test-ag-gpt-oss-120b-medium": {"answer_accuracy": 0.5, "overall_pass_rate": 0.2308}
+ }
+}

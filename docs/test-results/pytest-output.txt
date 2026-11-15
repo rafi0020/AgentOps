@@ -1,0 +1,134 @@
+Backend test suite, run file by file (RUN_LIVE=0 uv run pytest -q <file>), 2026-11-15.
+tests/test_investigator_live.py and tests/test_llm_live.py hold only live-model tests and collect nothing without a key.
+
+=== tests/test_approvals_api.py
+.......                                                                  [100%]
+7 passed in 18.36s
+=== tests/test_auth.py
+............                                                             [100%]
+12 passed in 15.45s
+=== tests/test_bootstrap.py
+..                                                                       [100%]
+2 passed in 6.34s
+=== tests/test_budgets.py
+.....                                                                    [100%]
+5 passed in 12.36s
+=== tests/test_compute.py
+.....                                                                    [100%]
+5 passed in 35.97s
+=== tests/test_datasets.py
+....                                                                     [100%]
+4 passed in 11.93s
+=== tests/test_deployment_config.py
+..                                                                       [100%]
+2 passed in 6.99s
+=== tests/test_eval_gate.py
+.....                                                                    [100%]
+5 passed in 8.32s
+=== tests/test_eval_grading.py
+...                                                                      [100%]
+3 passed in 8.64s
+=== tests/test_evaluation_api.py
+....                                                                     [100%]
+4 passed in 12.71s
+=== tests/test_evaluators.py
+..............................                                           [100%]
+30 passed in 8.44s
+=== tests/test_experiments.py
+.........                                                                [100%]
+9 passed in 24.88s
+=== tests/test_health.py
+....                                                                     [100%]
+4 passed in 9.91s
+=== tests/test_ingest_crash.py
+.                                                                        [100%]
+1 passed in 27.57s
+=== tests/test_ingest_endpoint.py
+....................                                                     [100%]
+20 passed in 19.13s
+=== tests/test_ingest_worker.py
+....                                                                     [100%]
+4 passed in 13.89s
+=== tests/test_investigations_api.py
+..................                                                       [100%]
+18 passed in 22.23s
+=== tests/test_investigator_live.py
+
+2 deselected in 2.95s
+=== tests/test_investigator_tools.py
+............                                                             [100%]
+12 passed in 41.17s
+=== tests/test_judge.py
+.........                                                                [100%]
+9 passed in 6.20s
+=== tests/test_llm_adapters.py
+............                                                             [100%]
+12 passed in 5.88s
+=== tests/test_llm_live.py
+
+3 deselected in 0.04s
+=== tests/test_llm_retry.py
+.........                                                                [100%]
+9 passed in 5.56s
+=== tests/test_llm_settings.py
+........                                                                 [100%]
+8 passed in 13.60s
+=== tests/test_monitors.py
+.........                                                                [100%]
+9 passed in 16.75s
+=== tests/test_online_scoring.py
+.....                                                                    [100%]
+5 passed in 12.74s
+=== tests/test_projects.py
+......                                                                   [100%]
+6 passed in 12.95s
+=== tests/test_prompts.py
+.........                                                                [100%]
+9 passed in 16.80s
+=== tests/test_retention.py
+..                                                                       [100%]
+2 passed in 10.69s
+=== tests/test_review_fixes.py
+........                                                                 [100%]
+8 passed in 15.21s
+=== tests/test_roles.py
+........                                                                 [100%]
+8 passed in 10.86s
+=== tests/test_rollups.py
+.........                                                                [100%]
+9 passed in 37.14s
+=== tests/test_runtime.py
+.....................                                                    [100%]
+21 passed in 22.57s
+=== tests/test_security_basics.py
+................                                                         [100%]
+16 passed in 7.99s
+=== tests/test_seed.py
+........                                                                 [100%]
+8 passed in 31.98s
+=== tests/test_targets.py
+........                                                                 [100%]
+8 passed in 5.07s
+=== tests/test_tenant_isolation.py
+......                                                                   [100%]
+6 passed in 4.93s
+=== tests/test_traces_api.py
+..........                                                               [100%]
+10 passed in 12.29s
+=== tests/test_tracing.py
+..                                                                       [100%]
+2 passed in 7.28s
+=== tests/test_usage.py
+....                                                                     [100%]
+4 passed in 9.02s
+=== tests/test_worker_claim.py
+...........                                                              [100%]
+11 passed in 11.30s
+=== tests/test_worker_crash.py
+..                                                                       [100%]
+2 passed in 32.24s
+=== tests/test_writer.py
+...........                                                              [100%]
+11 passed in 11.42s
+
+Total: 340 passed, 0 failed, 0 errors (43 files; 2 live-only files not collected).

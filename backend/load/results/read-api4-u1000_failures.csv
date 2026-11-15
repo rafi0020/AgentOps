@@ -1,0 +1,12 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+GET,GET /api/metrics/overview,"RetriesExceeded('http://localhost:3200/api/metrics/overview', 0, original=timed out)",1,2026-11-14T07:24:31Z,2026-11-14T07:24:31Z
+GET,GET /api/traces,LocustBadStatusCode(code=500),6,2026-11-14T07:23:05Z,2026-11-14T07:23:19Z
+GET,GET /api/traces/{project}/{trace},LocustBadStatusCode(code=500),1,2026-11-14T07:23:12Z,2026-11-14T07:23:12Z
+GET,GET /api/projects,LocustBadStatusCode(code=500),2,2026-11-14T07:23:05Z,2026-11-14T07:23:11Z
+GET,GET /api/investigations,"RetriesExceeded('http://localhost:3200/api/investigations', 0, original=timed out)",1,2026-11-14T07:24:31Z,2026-11-14T07:24:31Z
+GET,GET /api/metrics/series,"RetriesExceeded('http://localhost:3200/api/metrics/series', 0, original=timed out)",1,2026-11-14T07:24:30Z,2026-11-14T07:24:30Z
+GET,GET /api/traces,"RetriesExceeded('http://localhost:3200/api/traces', 0, original=timed out)",2,2026-11-14T07:24:31Z,2026-11-14T07:24:32Z
+GET,GET /api/traces/{project}/{trace},"RetriesExceeded('http://localhost:3200/api/traces/c3203326-bfde-41a7-82d9-be0237ab6fef/5131bf2890baa0b0c48dd04db0231396', 0, original=timed out)",1,2026-11-14T07:24:29Z,2026-11-14T07:24:29Z
+GET,GET /api/monitors/alerts,"RetriesExceeded('http://localhost:3200/api/monitors/alerts?open_only=true', 0, original=timed out)",2,2026-11-14T07:24:31Z,2026-11-14T07:24:31Z
+GET,GET /api/investigations,LocustBadStatusCode(code=500),1,2026-11-14T07:23:10Z,2026-11-14T07:23:10Z
+POST,POST /api/auth/login,LocustBadStatusCode(code=500),12,2026-11-14T07:23:04Z,2026-11-14T07:23:16Z

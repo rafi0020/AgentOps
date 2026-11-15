@@ -1,0 +1,61 @@
+{
+ "name": "seen-test-q09-q12-after-total-op",
+ "model": "cc/claude-sonnet-5-5",
+ "split": "test",
+ "n": 2,
+ "at": "2026-11-14T05:35:38+00:00",
+ "metrics": {
+  "answer_accuracy": 1.0,
+  "root_cause_rate": null,
+  "behaviour_rate": null,
+  "overall_pass_rate": 1.0,
+  "completed_rate": 1.0,
+  "unsupported_numbers_per_report": 0.0,
+  "mean_steps": 4,
+  "mean_tokens": 8872,
+  "mean_cost_usd": 0.0349,
+  "p50_latency_s": 13.5,
+  "p95_latency_s": 13.5
+ },
+ "by_kind": {
+  "lookup": {
+   "n": 2,
+   "passed": 2
+  }
+ },
+ "questions": [
+  {
+   "id": "q09",
+   "kind": "lookup",
+   "question": "How many tokens (input plus output) did checkout-assistant use on 2026-10-21?",
+   "passed": true,
+   "reason": "figure matches",
+   "status": "completed",
+   "steps": 4,
+   "tokens": 8695,
+   "cost_usd": 0.032265,
+   "latency_s": 11.5,
+   "unsupported": 0,
+   "tool_errors": 0,
+   "answer": "checkout-assistant used 2963761 tokens on 2026-10-21 (00:00 to 24:00 UTC). Input 2589733, output 374028. Based on 3939 calls in that day's metrics.",
+   "run_id": "ac479fdd-a3a3-4dfe-8af1-179867f069c1"
+  },
+  {
+   "id": "q12",
+   "kind": "lookup",
+   "question": "What was the estimated model cost of all three Lumen projects together on 2026-10-23?",
+   "passed": true,
+   "reason": "figure matches",
+   "status": "completed",
+   "steps": 4,
+   "tokens": 9048,
+   "cost_usd": 0.037572,
+   "latency_s": 13.5,
+   "unsupported": 0,
+   "tool_errors": 0,
+   "answer": "Estimated model cost, all three projects, 2026-10-23 (00:00 to 24:00 UTC): 5.672616 USD. Split: checkout-assistant 1.88115 USD, doc-search 1.912128 USD, support-triage 1.879338 USD. Costs near-even across projects. Based on per-project daily metrics queries, summed in code. Cost is estimate from token counts.",
+   "run_id": "38745391-694f-4165-8907-ffc04d59a352"
+  }
+ ],
+ "note": "Re-asked after the total operation was added because these two questions failed for want of it. The test set had been seen, so this is evidence the fix works, not a held-out score."
+}

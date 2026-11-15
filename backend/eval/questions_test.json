@@ -1,0 +1,138 @@
+[
+ {
+  "org": "lumen",
+  "kind": "lookup",
+  "question": "How many traces did checkout-assistant handle on 2026-11-11 (UTC)?",
+  "project": "checkout-assistant",
+  "unit": "count",
+  "tolerance": 0.005,
+  "reference_sql": "SELECT sum(roots) FROM rollups_5m r JOIN projects p ON p.id = r.project_id WHERE p.name = 'checkout-assistant' AND bucket >= '2026-11-11T00:00:00+00:00' AND bucket < '2026-11-12T00:00:00+00:00' ",
+  "expected": 825.0,
+  "id": "q03"
+ },
+ {
+  "org": "lumen",
+  "kind": "lookup",
+  "question": "What was the estimated model cost of doc-search on 2026-10-25?",
+  "project": "doc-search",
+  "unit": "usd",
+  "tolerance": 0.02,
+  "reference_sql": "SELECT sum(cost_usd) FROM rollups_5m r JOIN projects p ON p.id = r.project_id WHERE p.name = 'doc-search' AND bucket >= '2026-10-25T00:00:00+00:00' AND bucket < '2026-10-26T00:00:00+00:00' ",
+  "expected": 1.595113,
+  "id": "q06"
+ },
+ {
+  "org": "lumen",
+  "kind": "lookup",
+  "question": "How many tokens (input plus output) did checkout-assistant use on 2026-10-21?",
+  "project": "checkout-assistant",
+  "unit": "count",
+  "tolerance": 0.01,
+  "reference_sql": "SELECT sum(input_tokens + output_tokens) FROM rollups_5m r JOIN projects p ON p.id = r.project_id WHERE p.name = 'checkout-assistant' AND bucket >= '2026-10-21T00:00:00+00:00' AND bucket < '2026-10-22T00:00:00+00:00' ",
+  "expected": 2963761.0,
+  "id": "q09"
+ },
+ {
+  "org": "lumen",
+  "kind": "lookup",
+  "question": "What was the estimated model cost of all three Lumen projects together on 2026-10-23?",
+  "project": null,
+  "unit": "usd",
+  "tolerance": 0.02,
+  "reference_sql": "SELECT sum(cost_usd) FROM rollups_5m WHERE bucket >= '2026-10-23T00:00:00+00:00' AND bucket < '2026-10-24T00:00:00+00:00'",
+  "expected": 5.672616,
+  "id": "q12"
+ },
+ {
+  "org": "lumen",
+  "kind": "compare",
+  "question": "Which tool in checkout-assistant failed most often between 2026-10-27 10:00 UTC and 2026-10-29 09:00 UTC?",
+  "answer": "name",
+  "reference_sql": "SELECT tool FROM rollups_5m r JOIN projects p ON p.id = r.project_id WHERE p.name = 'checkout-assistant' AND tool <> '' AND bucket >= '2026-10-27T10:00:00+00:00' AND bucket < '2026-10-29T09:00:00+00:00' GROUP BY 1 ORDER BY sum(errors) DESC LIMIT 1",
+  "project": null,
+  "expected": "lookup_order",
+  "id": "q15"
+ },
+ {
+  "org": "lumen",
+  "kind": "compare",
+  "question": "Which Lumen project had the most failed spans on 2026-10-31?",
+  "answer": "name",
+  "reference_sql": "SELECT p.name FROM rollups_5m r JOIN projects p ON p.id = r.project_id WHERE bucket >= '2026-10-31T00:00:00+00:00' AND bucket < '2026-11-01T00:00:00+00:00' GROUP BY 1 ORDER BY sum(errors) DESC LIMIT 1",
+  "project": null,
+  "expected": "doc-search",
+  "id": "q18"
+ },
+ {
+  "org": "lumen",
+  "kind": "root_cause",
+  "question": "Something broke order lookups in checkout-assistant for about two days this month. What was it, and is it still happening?",
+  "must": [
+   "version 7"
+  ],
+  "any_of": [
+   "version 8",
+   "v8",
+   "fixed",
+   "no longer"
+  ],
+  "id": "q21"
+ },
+ {
+  "org": "lumen",
+  "kind": "root_cause",
+  "question": "Why did doc-search cost so much more on 2026-11-06 and the day after?",
+  "must": [
+   "enterprise"
+  ],
+  "any_of": [
+   "loop",
+   "model calls",
+   "calls per trace"
+  ],
+  "id": "q24"
+ },
+ {
+  "org": "lumen",
+  "kind": "root_cause",
+  "question": "Why did every Lumen project show errors at about the same time on 2026-10-24?",
+  "must": [
+   "provider"
+  ],
+  "any_of": [
+   "429",
+   "503",
+   "outage",
+   "upstream"
+  ],
+  "id": "q27"
+ },
+ {
+  "org": "lumen",
+  "kind": "ambiguous",
+  "question": "Is the error rate acceptable?",
+  "behaviour": "ask_user",
+  "id": "q30"
+ },
+ {
+  "org": "lumen",
+  "kind": "ambiguous",
+  "question": "Why is the bill higher?",
+  "behaviour": "ask_user",
+  "id": "q33"
+ },
+ {
+  "org": "lumen",
+  "kind": "unanswerable",
+  "question": "How many users does checkout-assistant have?",
+  "behaviour": "decline",
+  "id": "q36"
+ },
+ {
+  "org": "lumen",
+  "kind": "unanswerable",
+  "question": "What will our model costs be next quarter?",
+  "behaviour": "decline",
+  "id": "q39"
+ }
+]

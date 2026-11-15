@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "AgentOps Control Plane architecture",
+    "output": "docs/architecture.html",
+    "quality_profile": "showcase",
+    "subtitle": "OTLP telemetry in; traces, evaluation and investigations out"
+  },
+  "components": [
+    {
+      "id": "browser",
+      "type": "external",
+      "label": "Browser",
+      "sublabel": "Engineers, admins",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "apps",
+      "type": "external",
+      "label": "Instrumented apps",
+      "sublabel": "OpenTelemetry SDK",
+      "pos": [
+        40,
+        260
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "web",
+      "type": "frontend",
+      "label": "web",
+      "sublabel": "nginx :3200",
+      "pos": [
+        300,
+        60
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "api",
+      "type": "backend",
+      "label": "api",
+      "sublabel": "FastAPI :8200",
+      "pos": [
+        560,
+        60
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "redis",
+      "type": "messagebus",
+      "label": "Redis",
+      "sublabel": "wake-ups, live events",
+      "pos": [
+        820,
+        60
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "providers",
+      "type": "cloud",
+      "label": "Model providers",
+      "sublabel": "Anthropic, OpenAI-compatible, Ollama",
+      "pos": [
+        1080,
+        60
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "ingest",
+      "type": "backend",
+      "label": "ingest",
+      "sublabel": "inbox to spans",
+      "pos": [
+        300,
+        260
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "worker",
+      "type": "backend",
+      "label": "worker",
+      "sublabel": "agent runs, experiments, monitors",
+      "pos": [
+        820,
+        260
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "targets",
+      "type": "external",
+      "label": "Experiment targets",
+      "sublabel": "user HTTP endpoints",
+      "pos": [
+        1080,
+        260
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "migrate",
+      "type": "backend",
+      "label": "migrate",
+      "sublabel": "one-shot, then exits",
+      "pos": [
+        300,
+        460
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "pgbouncer",
+      "type": "backend",
+      "label": "PgBouncer",
+      "sublabel": "transaction pooling",
+      "pos": [
+        560,
+        260
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "db",
+      "type": "database",
+      "label": "PostgreSQL 16",
+      "sublabel": "row-level security",
+      "pos": [
+        560,
+        460
+      ],
+      "size": [
+        150,
+        64
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Docker Compose stack",
+      "wraps": [
+        "web",
+        "api",
+        "redis",
+        "ingest",
+        "worker",
+        "migrate",
+        "pgbouncer",
+        "db"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "browser-to-web",
+      "from": "browser",
+      "to": "web",
+      "label": "HTTPS",
+      "variant": "emphasis"
+    },
+    {
+      "id": "apps-to-web",
+      "from": "apps",
+      "to": "web",
+      "label": "OTLP",
+      "variant": "dashed"
+    },
+    {
+      "id": "web-to-api",
+      "from": "web",
+      "to": "api",
+      "label": "proxy"
+    },
+    {
+      "id": "api-to-redis",
+      "from": "api",
+      "to": "redis",
+      "label": "events"
+    },
+    {
+      "id": "api-to-pgbouncer",
+      "from": "api",
+      "to": "pgbouncer",
+      "label": "SQL"
+    },
+    {
+      "id": "ingest-to-pgbouncer",
+      "from": "ingest",
+      "to": "pgbouncer",
+      "label": "batches"
+    },
+    {
+      "id": "pgbouncer-to-db",
+      "from": "pgbouncer",
+      "to": "db",
+      "label": "SQL"
+    },
+    {
+      "id": "migrate-to-db",
+      "from": "migrate",
+      "to": "db",
+      "label": "migrations",
+      "variant": "dashed"
+    },
+    {
+      "id": "worker-to-pgbouncer",
+      "from": "worker",
+      "to": "pgbouncer",
+      "label": "runs"
+    },
+    {
+      "id": "worker-to-redis",
+      "from": "worker",
+      "to": "redis",
+      "label": "wake-ups"
+    },
+    {
+      "id": "worker-to-providers",
+      "from": "worker",
+      "to": "providers",
+      "label": "tool calls",
+      "variant": "security"
+    },
+    {
+      "id": "worker-to-targets",
+      "from": "worker",
+      "to": "targets",
+      "label": "HTTP",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Ingestion",
+      "items": [
+        "OTLP batches are stored before the sender gets 200",
+        "Ingest workers move each batch into spans in one transaction"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Runs and experiments",
+      "items": [
+        "Runs and experiments are claimed under a lease",
+        "A worker that dies leaves the work to another worker"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Tenancy",
+      "items": [
+        "Tenant tables are restricted to the current organisation",
+        "Applications write with ingestion keys, never database roles"
+      ]
+    }
+  ]
+}

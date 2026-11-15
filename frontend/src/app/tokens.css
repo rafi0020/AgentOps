@@ -1,0 +1,64 @@
+/* AgentOps Control Plane: instrument-console tokens. Graphite dark is the default; bench paper is the light theme.
+   Every colour, face and size in the app is read from here. */
+:root {
+  color-scheme: dark;
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 6px; --space-sm: 8px; --space-md: 12px; --space-lg: 16px; --space-xl: 24px; --space-2xl: 40px; --space-3xl: 56px;
+  --text-xs: 0.71875rem; --text-sm: 0.8125rem; --text-md: 0.875rem; --text-lg: 0.9375rem; --text-xl: 1.125rem; --text-2xl: 1.375rem; --text-3xl: 1.875rem;
+  --font-body: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+  --radius-card: 3px; --radius-input: 2px; --radius-chip: 2px;
+  --control-h: 28px; --bar-h: 44px; --rail-w: 56px;
+  --dur-micro: 100ms; --dur-short: 180ms; --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --z-base: 1; --z-raised: 10; --z-sticky: 200; --z-dropdown: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
+  /* graphite ground */
+  --color-paper: oklch(15.5% 0.006 250);
+  --color-paper-2: oklch(19% 0.007 250);
+  --color-paper-3: oklch(22.5% 0.008 250);
+  --color-ink: oklch(94% 0.005 250);
+  --color-ink-2: oklch(82% 0.008 250);
+  --color-muted: oklch(72% 0.01 250);
+  --color-rule: oklch(30% 0.008 250);
+  --color-rule-2: oklch(41% 0.01 250);
+  /* one signal colour: electric lime */
+  --color-accent: oklch(90% 0.2 128);
+  --color-accent-ink: oklch(16% 0.02 128);
+  --color-accent-text: oklch(90% 0.2 128);
+  --color-accent-wash: oklch(31% 0.07 128);
+  --color-focus: oklch(90% 0.2 128);
+  /* status only */
+  --color-bad: oklch(72% 0.17 25);
+  --color-bad-soft: oklch(27% 0.06 25);
+  --color-amber: oklch(84% 0.15 80);
+  --color-amber-soft: oklch(30% 0.05 80);
+  --color-steel: oklch(74% 0.02 240);
+  --color-ok: var(--color-accent-text);
+  --color-ok-soft: var(--color-accent-wash);
+  --color-person: var(--color-ink);
+  --color-error: var(--color-bad);
+  --color-scrim: oklch(0% 0 0 / 0.55);
+  --color-shadow: oklch(0% 0 0 / 0.45);
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-paper: oklch(98% 0.003 120);
+  --color-paper-2: oklch(99.3% 0.003 120);
+  --color-paper-3: oklch(95.5% 0.004 120);
+  --color-ink: oklch(20% 0.008 120);
+  --color-ink-2: oklch(33% 0.008 120);
+  --color-muted: oklch(44% 0.01 120);
+  --color-rule: oklch(88% 0.006 120);
+  --color-rule-2: oklch(76% 0.008 120);
+  --color-accent: oklch(89% 0.2 128);
+  --color-accent-ink: oklch(18% 0.02 128);
+  --color-accent-text: oklch(42% 0.13 135);
+  --color-accent-wash: oklch(94% 0.06 128);
+  --color-focus: oklch(50% 0.16 135);
+  --color-bad: oklch(50% 0.2 27);
+  --color-bad-soft: oklch(94% 0.04 27);
+  --color-amber: oklch(48% 0.12 65);
+  --color-amber-soft: oklch(95% 0.05 85);
+  --color-steel: oklch(50% 0.02 240);
+  --color-scrim: oklch(20% 0.008 120 / 0.35);
+  --color-shadow: oklch(20% 0.008 120 / 0.18);
+}

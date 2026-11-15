@@ -1,0 +1,13 @@
+spans 16,826,230, traces 3,444,510 (all organisations visible to Lumen: Lumen's only)
+  trace list, one day                          2.19 ms first     0.48 ms warm  ok
+  trace list, errors only                      0.46 ms first     0.19 ms warm  ok
+  trace list, by model                         0.23 ms first     0.27 ms warm  ok
+  trace list, name search                    141.69 ms first    66.29 ms warm  ok
+  trace list, slow (>5 s), 30 days             1.04 ms first     1.22 ms warm  ok
+  trace summary by id                         13.36 ms first     0.22 ms warm  ok
+  spans of a trace                            26.73 ms first     4.67 ms warm  ok
+  overview, one project, one day               5.17 ms first     2.38 ms warm  ok
+  overview, organisation, 30 days            326.04 ms first   177.97 ms warm  reads the whole range (sequential: rollups_5m (107,023 rows read))
+  series by hour and model, 30 days           97.16 ms first   103.98 ms warm  reads the whole range (sequential: rollups_5m (107,023 rows read))
+  error groups, one day (Investigator)       181.92 ms first     3.09 ms warm  ok
+  claim an ingest batch                        0.26 ms first     0.28 ms warm  ok
