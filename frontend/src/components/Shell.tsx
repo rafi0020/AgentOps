@@ -4,7 +4,7 @@ import { Bell, ClipboardCheck, Database, FileText, FlaskConical, LayoutDashboard
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
-import { api, useApi, useMe } from "@/lib/api";
+import { BASE, api, useApi, useMe } from "@/lib/api";
 import type { Role } from "@/lib/types";
 import { useQueryState } from "@/lib/url";
 import { ProjectSwitcher, useProject, withProject } from "./Project";
@@ -59,7 +59,7 @@ export function Shell({ children }: { children: ReactNode }) {
   if (isLoading || !user) return <Loading rows={6} label="Signing in" />;
   const signOut = async () => {
     await api("/api/auth/logout", { method: "POST" }).catch(() => {});
-    window.location.href = "/login/";
+    window.location.href = `${BASE}/login/`;
   };
   const current = NAV.find((n) => path.startsWith(n.href.slice(0, -1)));
   const ranged = RANGED.some((p) => path.startsWith(p)) && !params.get("trace");

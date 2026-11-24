@@ -4,6 +4,8 @@ Observability, evaluation and release control for LLM applications, with an agen
 
 ![AgentOps overview](docs/screenshots/01-overview.png)
 
+**[Live demo](https://rafi0020.github.io/AgentOps/)**: the real web interface on GitHub Pages, answered from responses recorded on the running system (API, database, worker and model). Sign in with a demo account from the login page. Runs replay as they were recorded and changes are not saved. [How the demo works](frontend/demo/README.md).
+
 ## Features
 
 **Seeing what applications did**
@@ -31,7 +33,7 @@ Observability, evaluation and release control for LLM applications, with an agen
 
 ![AgentOps architecture](docs/architecture.gif)
 
-[Interactive diagram](https://rafi0020.github.io/AgentOps/docs/architecture.html) · [Architecture notes](docs/ARCHITECTURE.md) · [Database schema](docs/DATABASE.md) · [API reference](docs/API.md)
+[Live demo](https://rafi0020.github.io/AgentOps/) · [Architecture diagram](https://rafi0020.github.io/AgentOps/diagram/) · [Architecture notes](docs/ARCHITECTURE.md) · [Database schema](docs/DATABASE.md) · [API reference](docs/API.md)
 
 | Layer | Technology |
 |---|---|
@@ -329,7 +331,7 @@ issue.
 
 | Document | Contents |
 |---|---|
-| [docs/architecture.html](https://rafi0020.github.io/AgentOps/docs/architecture.html) | Interactive architecture diagram |
+| [Architecture diagram](https://rafi0020.github.io/AgentOps/diagram/) | Interactive architecture diagram |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Processes, request paths for ingestion and investigations, components and design decisions |
 | [docs/API.md](docs/API.md) | Every REST endpoint, with authentication and scopes |
 | [docs/DATABASE.md](docs/DATABASE.md) | Tables, partitions, roll-ups, roles and row-level security |

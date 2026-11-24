@@ -1,6 +1,6 @@
 # Architecture
 
-[Interactive diagram](https://rafi0020.github.io/AgentOps/docs/architecture.html)
+[Interactive diagram](https://rafi0020.github.io/AgentOps/diagram/)
 
 ## Overview
 
